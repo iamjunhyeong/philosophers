@@ -2,6 +2,20 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
+# include <time.h>
+# include <sys/time.h>
+
+
+long long	get_time(void)
+{
+	struct timeval	mytime;
+
+	if (gettimeofday(&mytime, NULL) == -1)
+		return (-1);
+	printf("sec : %ld\n", mytime.tv_sec);
+	printf("usec : %ld\n", mytime.tv_usec);
+	return ((mytime.tv_sec * 1000) + (mytime.tv_usec / 1000));
+}
 
 // 쓰레드 함수
 // 1초를 기다린후 아규먼트^2 을 리턴한다.
@@ -18,25 +32,13 @@ void *t_function(void *data)
 
 int main()
 {
-    pthread_t p_thread;
-    int thr_id;
-    // int status = 0;
-    int a = 100;
+    long long cur;
 
-    printf("Before Thread\n"); 
-    thr_id = pthread_create(&p_thread, NULL, t_function, (void *)&a);
-    if (thr_id < 0)
-    {
-        perror("thread create error : ");
-        exit(0);
-    }
-    // 식별번호 p_thread 를 가지는 쓰레드를 detach 
-    // 시켜준다. 
+		cur = get_time();
+		printf("ans : %lld\n", cur);
 
-	thr_id = pthread_create(&p_thread, NULL, t_function, (void *)&a);
-	sleep(1);
-	printf("t id : %d\n", p_thread);
-    pthread_detach(p_thread);
-    pause();
-    return 0;
+		usleep(100);
+		long long cur2;
+		cur2 = get_time();
+		printf("ans : %lld\n", cur2 - cur);
 }
