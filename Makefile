@@ -3,20 +3,20 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: junhyeong <junhyeong@student.42.fr>        +#+  +:+       +#+         #
+#    By: junhyeop <junhyeop@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/01 00:14:48 by junhyeong         #+#    #+#              #
-#    Updated: 2024/09/02 17:51:51 by junhyeong        ###   ########.fr        #
+#    Updated: 2024/09/06 15:13:13 by junhyeop         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 
 SRC	= main.c \
-		utils.c \
-		init.c \
-		philo_01.c \
-		philo_02.c
+	utils.c \
+	init.c \
+	philo_01.c \
+	philo_02.c
 
 INCDIRS = ./
 
@@ -35,8 +35,8 @@ all: $(NAME)
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 $(NAME): $(OBJS)
-		$(CC) -o $(NAME) $(OBJS)
-	
+	$(CC) -o $(NAME) $(OBJS)
+
 clean:
 	${RM} *.o 
 
